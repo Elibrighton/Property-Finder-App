@@ -22,5 +22,11 @@ namespace Property_Finder_App
 
             return match;
         }
+
+        public static List<string> GetMatchesList(string text, string pattern)
+        {
+            MatchCollection matchList = Regex.Matches(text, pattern);
+            return matchList.Cast<Match>().Select(match => match.Value).ToList();
+        }
     }
 }

@@ -10,10 +10,12 @@ using System.Windows.Forms;
 
 namespace Property_Finder_App
 {
-    public class PropertyFinder
+    public class Search
     {
-        private const string realEstateDomain = "http://www.realestate.com.au/buy/";
+        private const string realEstateDomain = "http://www.realestate.com.au/";
+        private const string buyController = "buy/";
         private const string source = "location-search";
+        private const int listingsPerPage = 20;
 
         public Dictionary<PropertyType, string> PropertyTypes;
         public Dictionary<Bed, string> Beds;
@@ -23,7 +25,7 @@ namespace Property_Finder_App
         public Dictionary<CarSpace, string> CarSpaces;
         public Dictionary<ConstructionType, string> ConstructionTypes;
 
-        public PropertyFinder()
+        public Search()
         {
             Locations = GetLocations();
             PropertyTypes = GetPropertyTypes();
@@ -225,23 +227,24 @@ namespace Property_Finder_App
             };
         }
 
-        public string GetBuyUrl(PropertyType propertyType, Bed minBeds, int minLand, Price minPrice, Price maxPrice, Location location, ConstructionType constructionType, CarSpace minCarSpaces, Bathroom minBathrooms, Bed maxBeds, bool isIncludingSurroundingSuburbs, bool isExcludingPropertiesUnderContract, int listing)
+        public string GetUrl(PropertyType propertyType, Bed minBeds, int minLand, Price minPrice, Price maxPrice, Location location, ConstructionType constructionType, CarSpace minCarSpaces, Bathroom minBathrooms, Bed maxBeds, bool isIncludingSurroundingSuburbs, bool isExcludingPropertiesUnderContract, int listing)
         {
-            var parameters = GetParameters(constructionType, 
-                                            minCarSpaces, 
-                                            minBathrooms, 
-                                            minBeds, 
+            var parameters = GetParameters(constructionType,
+                                            minCarSpaces,
+                                            minBathrooms,
+                                            minBeds,
                                             maxBeds,
                                             isIncludingSurroundingSuburbs,
                                             isExcludingPropertiesUnderContract,
                                             source);
 
             return string.Concat(realEstateDomain,
+                                        buyController,
                                         GetPropertyTypesQuery(propertyType),
                                         GetMinBedsQuery(minBeds),
                                         GetMinLandQuery(minLand),
                                         GetPriceRangeQuery(minPrice, maxPrice),
-                                        GetLocationQuery(location), 
+                                        GetLocationQuery(location),
                                         "/",
                                         GetListingQuery(listing),
                                         parameters);
@@ -464,6 +467,28 @@ namespace Property_Finder_App
             }
 
             return totalHomes;
+        }
+
+        public List<string> GetListedProperties(string response)
+        {
+            return RegexHelper.GetMatchesList(response, @"/property-house-qld-\D*-\d*").Distinct().ToList();
+        }
+
+        public int GetTotalListings(int totalHomes)
+        {
+            var totalListings = 0;
+
+            if (totalHomes > 0)
+            {
+                totalListings = totalHomes / listingsPerPage;
+
+                if (totalHomes % listingsPerPage > 0)
+                {
+                    totalListings++;
+                }
+            }
+
+            return totalListings;
         }
     }
 }
