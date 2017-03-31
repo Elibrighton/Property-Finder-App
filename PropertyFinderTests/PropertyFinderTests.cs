@@ -26,15 +26,21 @@ namespace PropertyFinderTests
             // Arrange
             var testPropertyType = PropertyFinder.PropertyType.All;
             var testMinBeds = PropertyFinder.Bed.Any;
+            var testMinLand = 0;
             var testMinPrice = PropertyFinder.Price.MinAny;
             var testMaxPrice = PropertyFinder.Price.MaxAny;
             var testLocation = PropertyFinder.Location.BrisbaneGreaterRegion;
+            var testConstructionType = PropertyFinder.ConstructionType.Any;
+            var testMinCarSpaces = PropertyFinder.CarSpace.Any;
+            var testMinBathrooms = PropertyFinder.Bathroom.Any;
             var testMaxBeds = PropertyFinder.Bed.Any;
+            var testIsIncludingSurroundingSuburbs = true;
+            var testIsExcludingPropertiesUnderContract = false;
             var testListing = 1;
             var expectedUrl = "http://www.realestate.com.au/buy/in-brisbane+-+greater+region%2c+qld%3b+/list-1?source=location-search";
 
             // Act
-            var actualUrl = TestPropertyFinder.GetBuyUrl(testPropertyType, testMinBeds, testMinPrice, testMaxPrice, testLocation, testMaxBeds, testListing);
+            var actualUrl = TestPropertyFinder.GetBuyUrl(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testListing);
 
             // Assert
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -46,15 +52,21 @@ namespace PropertyFinderTests
             // Arrange
             var testPropertyType = PropertyFinder.PropertyType.House;
             var testMinBeds = PropertyFinder.Bed.Any;
+            var testMinLand = 0;
             var testMinPrice = PropertyFinder.Price.MinAny;
             var testMaxPrice = PropertyFinder.Price.MaxAny;
             var testLocation = PropertyFinder.Location.BrisbaneGreaterRegion;
+            var testConstructionType = PropertyFinder.ConstructionType.Any;
+            var testMinCarSpaces = PropertyFinder.CarSpace.Any;
+            var testMinBathrooms = PropertyFinder.Bathroom.Any;
             var testMaxBeds = PropertyFinder.Bed.Any;
+            var testIsIncludingSurroundingSuburbs = true;
+            var testIsExcludingPropertiesUnderContract = false;
             var testListing = 1;
             var expectedUrl = "http://www.realestate.com.au/buy/property-house-in-brisbane+-+greater+region%2c+qld%3b+/list-1?source=location-search";
 
             // Act
-            var actualUrl = TestPropertyFinder.GetBuyUrl(testPropertyType, testMinBeds, testMinPrice, testMaxPrice, testLocation, testMaxBeds, testListing);
+            var actualUrl = TestPropertyFinder.GetBuyUrl(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testListing);
 
             // Assert
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -66,15 +78,21 @@ namespace PropertyFinderTests
             // Arrange
             var testPropertyType = PropertyFinder.PropertyType.All;
             var testMinBeds = PropertyFinder.Bed.Two;
+            var testMinLand = 0;
             var testMinPrice = PropertyFinder.Price.MinAny;
             var testMaxPrice = PropertyFinder.Price.MaxAny;
             var testLocation = PropertyFinder.Location.BrisbaneGreaterRegion;
+            var testConstructionType = PropertyFinder.ConstructionType.Any;
+            var testMinCarSpaces = PropertyFinder.CarSpace.Any;
+            var testMinBathrooms = PropertyFinder.Bathroom.Any;
             var testMaxBeds = PropertyFinder.Bed.Any;
+            var testIsIncludingSurroundingSuburbs = true;
+            var testIsExcludingPropertiesUnderContract = false;
             var testListing = 1;
             var expectedUrl = "http://www.realestate.com.au/buy/with-2-bedrooms-in-brisbane+-+greater+region%2c+qld%3b+/list-1?maxBeds=any&source=location-search";
 
             // Act
-            var actualUrl = TestPropertyFinder.GetBuyUrl(testPropertyType, testMinBeds, testMinPrice, testMaxPrice, testLocation, testMaxBeds, testListing);
+            var actualUrl = TestPropertyFinder.GetBuyUrl(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testListing);
 
             // Assert
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -86,15 +104,21 @@ namespace PropertyFinderTests
             // Arrange
             var testPropertyType = PropertyFinder.PropertyType.All;
             var testMinBeds = PropertyFinder.Bed.Two;
+            var testMinLand = 0;
             var testMinPrice = PropertyFinder.Price.MinAny;
             var testMaxPrice = PropertyFinder.Price.MaxAny;
             var testLocation = PropertyFinder.Location.BrisbaneGreaterRegion;
+            var testConstructionType = PropertyFinder.ConstructionType.Any;
+            var testMinCarSpaces = PropertyFinder.CarSpace.Any;
+            var testMinBathrooms = PropertyFinder.Bathroom.Any;
             var testMaxBeds = PropertyFinder.Bed.Four;
+            var testIsIncludingSurroundingSuburbs = true;
+            var testIsExcludingPropertiesUnderContract = false;
             var testListing = 1;
             var expectedUrl = "http://www.realestate.com.au/buy/with-2-bedrooms-in-brisbane+-+greater+region%2c+qld%3b+/list-1?maxBeds=4&source=location-search";
 
             // Act
-            var actualUrl = TestPropertyFinder.GetBuyUrl(testPropertyType, testMinBeds, testMinPrice, testMaxPrice, testLocation, testMaxBeds, testListing);
+            var actualUrl = TestPropertyFinder.GetBuyUrl(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testListing);
 
             // Assert
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -106,15 +130,21 @@ namespace PropertyFinderTests
             // Arrange
             var testPropertyType = PropertyFinder.PropertyType.All;
             var testMinBeds = PropertyFinder.Bed.Any;
+            var testMinLand = 0;
             var testMinPrice = PropertyFinder.Price.FiveHundredThousand;
             var testMaxPrice = PropertyFinder.Price.MaxAny;
             var testLocation = PropertyFinder.Location.BrisbaneGreaterRegion;
+            var testConstructionType = PropertyFinder.ConstructionType.Any;
+            var testMinCarSpaces = PropertyFinder.CarSpace.Any;
+            var testMinBathrooms = PropertyFinder.Bathroom.Any;
             var testMaxBeds = PropertyFinder.Bed.Any;
+            var testIsIncludingSurroundingSuburbs = true;
+            var testIsExcludingPropertiesUnderContract = false;
             var testListing = 1;
             var expectedUrl = "http://www.realestate.com.au/buy/between-500000-any-in-brisbane+-+greater+region%2c+qld%3b+/list-1?source=location-search";
 
             // Act
-            var actualUrl = TestPropertyFinder.GetBuyUrl(testPropertyType, testMinBeds, testMinPrice, testMaxPrice, testLocation, testMaxBeds, testListing);
+            var actualUrl = TestPropertyFinder.GetBuyUrl(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testListing);
 
             // Assert
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -126,53 +156,65 @@ namespace PropertyFinderTests
             // Arrange
             var testPropertyType = PropertyFinder.PropertyType.All;
             var testMinBeds = PropertyFinder.Bed.Any;
+            var testMinLand = 0;
             var testMinPrice = PropertyFinder.Price.MinAny;
             var testMaxPrice = PropertyFinder.Price.SevenHundredAndFiftyThousand;
+            var testConstructionType = PropertyFinder.ConstructionType.Any;
             var testLocation = PropertyFinder.Location.BrisbaneGreaterRegion;
+            var testMinCarSpaces = PropertyFinder.CarSpace.Any;
+            var testMinBathrooms = PropertyFinder.Bathroom.Any;
             var testMaxBeds = PropertyFinder.Bed.Any;
+            var testIsIncludingSurroundingSuburbs = true;
+            var testIsExcludingPropertiesUnderContract = false;
             var testListing = 1;
             var expectedUrl = "http://www.realestate.com.au/buy/between-0-750000-in-brisbane+-+greater+region%2c+qld%3b+/list-1?source=location-search";
 
             // Act
-            var actualUrl = TestPropertyFinder.GetBuyUrl(testPropertyType, testMinBeds, testMinPrice, testMaxPrice, testLocation, testMaxBeds, testListing);
+            var actualUrl = TestPropertyFinder.GetBuyUrl(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testListing);
 
             // Assert
             Assert.AreEqual(expectedUrl, actualUrl);
         }
 
         [TestMethod]
-        public void GetBuyUrlWithLocationPropertyTypeMinBedMinPriceMaxPriceMaxBed_UrlReturned_Test()
+        public void GetBuyUrlWithLocationPropertyTypeMinBedsMinLandMinPriceMaxPriceConstructionTypeMinCarSpacesMinBathroomsMaxBedsSurroundingSuburbs_UrlReturned_Test()
         {
             // Arrange
             var testPropertyType = PropertyFinder.PropertyType.House;
-            var testMinBeds = PropertyFinder.Bed.Two;
+            var testMinBeds = PropertyFinder.Bed.Three;
+            var testMinLand = 0;
             var testMinPrice = PropertyFinder.Price.TwoHundredAndFiftyThousand;
             var testMaxPrice = PropertyFinder.Price.FiveHundredThousand;
             var testLocation = PropertyFinder.Location.BrisbaneGreaterRegion;
+            var testConstructionType = PropertyFinder.ConstructionType.EstablishedProperty;
+            var testMinCarSpaces = PropertyFinder.CarSpace.TwoPlus;
+            var testMinBathrooms = PropertyFinder.Bathroom.TwoPlus;
             var testMaxBeds = PropertyFinder.Bed.Four;
+            var testIsIncludingSurroundingSuburbs = true;
+            var testIsExcludingPropertiesUnderContract = true;
             var testListing = 1;
-            var expectedUrl = "http://www.realestate.com.au/buy/property-house-with-2-bedrooms-between-250000-500000-in-brisbane+-+greater+region%2c+qld%3b+/list-1?maxBeds=4&source=location-search";
+            var expectedUrl = "http://www.realestate.com.au/buy/property-house-with-3-bedrooms-between-250000-500000-in-brisbane+-+greater+region%2c+qld%3b+/list-1?newOrEstablished=established&numParkingSpaces=2&numBaths=2&maxBeds=4&misc=ex-under-contract&source=location-search";
 
             // Act
-            var actualUrl = TestPropertyFinder.GetBuyUrl(testPropertyType, testMinBeds, testMinPrice, testMaxPrice, testLocation, testMaxBeds, testListing);
+            var actualUrl = TestPropertyFinder.GetBuyUrl(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testListing);
 
             // Assert
             Assert.AreEqual(expectedUrl, actualUrl);
         }
 
-        [TestMethod]
-        public void GetWebResonse_ResponseReturned_Test()
-        {
-            // Arrange
-            var testUrl = "http://www.realestate.com.au/buy/in-brisbane+-+greater+region%2c+qld%3b/list-1";
-            var expectedResponse = string.Empty;
+        //[TestMethod]
+        //public void GetWebResonse_ResponseReturned_Test()
+        //{
+        //    // Arrange
+        //    var testUrl = "http://www.realestate.com.au/buy/in-brisbane+-+greater+region%2c+qld%3b/list-1";
+        //    var expectedResponse = string.Empty;
 
-            // Act
-            var actualResponse = TestPropertyFinder.GetWebResponse(testUrl);
+        //    // Act
+        //    var actualResponse = TestPropertyFinder.GetWebResponse(testUrl);
 
-            // Assert
-            Assert.AreEqual(expectedResponse, actualResponse);
-        }
+        //    // Assert
+        //    Assert.AreEqual(expectedResponse, actualResponse);
+        //}
 
         [TestMethod]
         public void GetTotalHomes_TotalReturned_Test()
@@ -196,7 +238,7 @@ namespace PropertyFinderTests
             var expectedPropertyType = "property-house-";
 
             // Act
-            var actualPropertyType = TestPropertyFinder.GetPropertyTypes(testPropertyType);
+            var actualPropertyType = TestPropertyFinder.GetPropertyTypesQuery(testPropertyType);
 
             // Assert
             Assert.AreEqual(expectedPropertyType, actualPropertyType);
@@ -210,7 +252,7 @@ namespace PropertyFinderTests
             var expectedMinBeds = string.Empty;
 
             // Act
-            var actualMinBeds = TestPropertyFinder.GetMinBeds(testMinBeds);
+            var actualMinBeds = TestPropertyFinder.GetMinBedsQuery(testMinBeds);
 
             // Assert
             Assert.AreEqual(expectedMinBeds, actualMinBeds);
@@ -224,7 +266,7 @@ namespace PropertyFinderTests
             var expectedMinBeds = "with-studio-";
 
             // Act
-            var actualMinBeds = TestPropertyFinder.GetMinBeds(testMinBeds);
+            var actualMinBeds = TestPropertyFinder.GetMinBedsQuery(testMinBeds);
 
             // Assert
             Assert.AreEqual(expectedMinBeds, actualMinBeds);
@@ -238,7 +280,7 @@ namespace PropertyFinderTests
             var expectedMinBeds = "with-1-bedroom-";
 
             // Act
-            var actualMinBeds = TestPropertyFinder.GetMinBeds(testMinBeds);
+            var actualMinBeds = TestPropertyFinder.GetMinBedsQuery(testMinBeds);
 
             // Assert
             Assert.AreEqual(expectedMinBeds, actualMinBeds);
@@ -252,7 +294,7 @@ namespace PropertyFinderTests
             var expectedMinBeds = "with-2-bedrooms-";
 
             // Act
-            var actualMinBeds = TestPropertyFinder.GetMinBeds(testMinBeds);
+            var actualMinBeds = TestPropertyFinder.GetMinBedsQuery(testMinBeds);
 
             // Assert
             Assert.AreEqual(expectedMinBeds, actualMinBeds);
@@ -266,7 +308,7 @@ namespace PropertyFinderTests
             var expectedLocation = "in-brisbane+-+greater+region%2c+qld%3b+";
 
             // Act
-            var actualLocation = TestPropertyFinder.GetLocation(testLocation);
+            var actualLocation = TestPropertyFinder.GetLocationQuery(testLocation);
 
             // Assert
             Assert.AreEqual(expectedLocation, actualLocation);
@@ -280,7 +322,7 @@ namespace PropertyFinderTests
             var expectedLocation = "in-toowong%2c+qld+4066%3b+";
 
             // Act
-            var actualLocation = TestPropertyFinder.GetLocation(testLocation);
+            var actualLocation = TestPropertyFinder.GetLocationQuery(testLocation);
 
             // Assert
             Assert.AreEqual(expectedLocation, actualLocation);
@@ -294,7 +336,7 @@ namespace PropertyFinderTests
             var expectedListing = "list-1";
 
             // Act
-            var actualListing = TestPropertyFinder.GetListing(testListing);
+            var actualListing = TestPropertyFinder.GetListingQuery(testListing);
 
             // Assert
             Assert.AreEqual(expectedListing, actualListing);
@@ -308,7 +350,7 @@ namespace PropertyFinderTests
             var expectedMaxBeds = "maxBeds=any";
 
             // Act
-            var actualMaxBeds = TestPropertyFinder.GetMaxBeds(testMaxBeds);
+            var actualMaxBeds = TestPropertyFinder.GetMaxBedsQuery(testMaxBeds);
 
             // Assert
             Assert.AreEqual(expectedMaxBeds, actualMaxBeds);
@@ -318,13 +360,144 @@ namespace PropertyFinderTests
         public void GetParameters_ParametersReturned_Test()
         {
             // Arrange
+            var testConstructionType = PropertyFinder.ConstructionType.Any;
+            var testMinCarSpaces = PropertyFinder.CarSpace.Any;
+            var testMinBathrooms = PropertyFinder.Bathroom.Any;
+            var testMinBeds = PropertyFinder.Bed.Any;
+            var testMaxBeds = PropertyFinder.Bed.Any;
+            var testIsIncludingSurroundingSuburbs = true;
+            var testIsExcludingPropertiesUnderContract = false;
+            var testSource = "location-search";
+            var expectedParameters = "?source=location-search";
+
+            // Act
+            var actualParameters = TestPropertyFinder.GetParameters(testConstructionType, testMinCarSpaces, testMinBathrooms, testMinBeds, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testSource);
+
+            // Assert
+            Assert.AreEqual(expectedParameters, actualParameters);
+        }
+
+        [TestMethod]
+        public void GetParametersWithMaxBeds_ParametersReturned_Test()
+        {
+            // Arrange
+            var testConstructionType = PropertyFinder.ConstructionType.Any;
+            var testMinCarSpaces = PropertyFinder.CarSpace.Any;
+            var testMinBathrooms = PropertyFinder.Bathroom.Any;
             var testMinBeds = PropertyFinder.Bed.Two;
             var testMaxBeds = PropertyFinder.Bed.Four;
+            var testIsIncludingSurroundingSuburbs = true;
+            var testIsExcludingPropertiesUnderContract = false;
             var testSource = "location-search";
             var expectedParameters = "?maxBeds=4&source=location-search";
 
             // Act
-            var actualParameters = TestPropertyFinder.GetParameters(testMinBeds, testMaxBeds, testSource);
+            var actualParameters = TestPropertyFinder.GetParameters(testConstructionType, testMinCarSpaces, testMinBathrooms, testMinBeds, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testSource);
+
+            // Assert
+            Assert.AreEqual(expectedParameters, actualParameters);
+        }
+
+        [TestMethod]
+        public void GetParametersWithMinBathrooms_ParametersReturned_Test()
+        {
+            // Arrange
+            var testConstructionType = PropertyFinder.ConstructionType.Any;
+            var testMinCarSpaces = PropertyFinder.CarSpace.Any;
+            var testMinBathrooms = PropertyFinder.Bathroom.TwoPlus;
+            var testMinBeds = PropertyFinder.Bed.Any;
+            var testMaxBeds = PropertyFinder.Bed.Any;
+            var testIsIncludingSurroundingSuburbs = true;
+            var testIsExcludingPropertiesUnderContract = false;
+            var testSource = "location-search";
+            var expectedParameters = "?numBaths=2&source=location-search";
+
+            // Act
+            var actualParameters = TestPropertyFinder.GetParameters(testConstructionType, testMinCarSpaces, testMinBathrooms, testMinBeds, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testSource);
+
+            // Assert
+            Assert.AreEqual(expectedParameters, actualParameters);
+        }
+
+        [TestMethod]
+        public void GetParametersWithMinCarSpaces_ParametersReturned_Test()
+        {
+            // Arrange
+            var testConstructionType = PropertyFinder.ConstructionType.Any;
+            var testMinCarSpaces = PropertyFinder.CarSpace.TwoPlus;
+            var testMinBathrooms = PropertyFinder.Bathroom.Any;
+            var testMinBeds = PropertyFinder.Bed.Any;
+            var testMaxBeds = PropertyFinder.Bed.Any;
+            var testIsIncludingSurroundingSuburbs = true;
+            var testIsExcludingPropertiesUnderContract = false;
+            var testSource = "location-search";
+            var expectedParameters = "?numParkingSpaces=2&source=location-search";
+
+            // Act
+            var actualParameters = TestPropertyFinder.GetParameters(testConstructionType, testMinCarSpaces, testMinBathrooms, testMinBeds, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testSource);
+
+            // Assert
+            Assert.AreEqual(expectedParameters, actualParameters);
+        }
+
+        [TestMethod]
+        public void GetParametersWithConstructionType_ParametersReturned_Test()
+        {
+            // Arrange
+            var testConstructionType = PropertyFinder.ConstructionType.EstablishedProperty;
+            var testMinCarSpaces = PropertyFinder.CarSpace.Any;
+            var testMinBathrooms = PropertyFinder.Bathroom.Any;
+            var testMinBeds = PropertyFinder.Bed.Any;
+            var testMaxBeds = PropertyFinder.Bed.Any;
+            var testIsIncludingSurroundingSuburbs = true;
+            var testIsExcludingPropertiesUnderContract = false;
+            var testSource = "location-search";
+            var expectedParameters = "?newOrEstablished=established&source=location-search";
+
+            // Act
+            var actualParameters = TestPropertyFinder.GetParameters(testConstructionType, testMinCarSpaces, testMinBathrooms, testMinBeds, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testSource);
+
+            // Assert
+            Assert.AreEqual(expectedParameters, actualParameters);
+        }
+
+        [TestMethod]
+        public void GetParametersWithoutIncludingSurroundingSuburbs_ParametersReturned_Test()
+        {
+            // Arrange
+            var testConstructionType = PropertyFinder.ConstructionType.Any;
+            var testMinCarSpaces = PropertyFinder.CarSpace.Any;
+            var testMinBathrooms = PropertyFinder.Bathroom.Any;
+            var testMinBeds = PropertyFinder.Bed.Any;
+            var testMaxBeds = PropertyFinder.Bed.Any;
+            var testIsIncludingSurroundingSuburbs = false;
+            var testIsExcludingPropertiesUnderContract = false;
+            var testSource = "location-search";
+            var expectedParameters = "?includeSurrounding=false&source=location-search";
+
+            // Act
+            var actualParameters = TestPropertyFinder.GetParameters(testConstructionType, testMinCarSpaces, testMinBathrooms, testMinBeds, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testSource);
+
+            // Assert
+            Assert.AreEqual(expectedParameters, actualParameters);
+        }
+
+        [TestMethod]
+        public void GetParametersWithExcludingPropertiesUnderContract_ParametersReturned_Test()
+        {
+            // Arrange
+            var testConstructionType = PropertyFinder.ConstructionType.Any;
+            var testMinCarSpaces = PropertyFinder.CarSpace.Any;
+            var testMinBathrooms = PropertyFinder.Bathroom.Any;
+            var testMinBeds = PropertyFinder.Bed.Any;
+            var testMaxBeds = PropertyFinder.Bed.Any;
+            var testIsIncludingSurroundingSuburbs = true;
+            var testIsExcludingPropertiesUnderContract = true;
+            var testSource = "location-search";
+            var expectedParameters = "?misc=ex-under-contract&source=location-search";
+
+            // Act
+            var actualParameters = TestPropertyFinder.GetParameters(testConstructionType, testMinCarSpaces, testMinBathrooms, testMinBeds, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testSource);
 
             // Assert
             Assert.AreEqual(expectedParameters, actualParameters);
@@ -339,7 +512,7 @@ namespace PropertyFinderTests
             var expectedPrices = string.Empty;
 
             // Act
-            var actualPrices = TestPropertyFinder.GetPriceRange(testMinPrice, testMaxPrice);
+            var actualPrices = TestPropertyFinder.GetPriceRangeQuery(testMinPrice, testMaxPrice);
 
             // Assert
             Assert.AreEqual(expectedPrices, actualPrices);
@@ -354,7 +527,7 @@ namespace PropertyFinderTests
             var expectedPrices = "between-50000-any-";
 
             // Act
-            var actualPrices = TestPropertyFinder.GetPriceRange(testMinPrice, testMaxPrice);
+            var actualPrices = TestPropertyFinder.GetPriceRangeQuery(testMinPrice, testMaxPrice);
 
             // Assert
             Assert.AreEqual(expectedPrices, actualPrices);
@@ -369,7 +542,7 @@ namespace PropertyFinderTests
             var expectedPrices = "between-0-550000-";
 
             // Act
-            var actualPrices = TestPropertyFinder.GetPriceRange(testMinPrice, testMaxPrice);
+            var actualPrices = TestPropertyFinder.GetPriceRangeQuery(testMinPrice, testMaxPrice);
 
             // Assert
             Assert.AreEqual(expectedPrices, actualPrices);
@@ -384,10 +557,94 @@ namespace PropertyFinderTests
             var expectedPrices = "between-250000-600000-";
 
             // Act
-            var actualPrices = TestPropertyFinder.GetPriceRange(testMinPrice, testMaxPrice);
+            var actualPrices = TestPropertyFinder.GetPriceRangeQuery(testMinPrice, testMaxPrice);
 
             // Assert
             Assert.AreEqual(expectedPrices, actualPrices);
+        }
+
+        [TestMethod]
+        public void GetSourceQuery_SourceReturned_Test()
+        {
+            // Arrange
+            var testSource = "location-search";
+            var expectedSource = "source=location-search";
+
+            // Act
+            var actualSource = TestPropertyFinder.GetSourceQuery(testSource);
+
+            // Assert
+            Assert.AreEqual(expectedSource, actualSource);
+        }
+
+        [TestMethod]
+        public void GetMinBathroomsQuery_MinBathroomsReturned_Test()
+        {
+            // Arrange
+            var testMinBathroom = PropertyFinder.Bathroom.TwoPlus;
+            var expectedMinBathroom = "numBaths=2";
+
+            // Act
+            var actualMinBathroom = TestPropertyFinder.GetMinBathroomsQuery(testMinBathroom);
+
+            // Assert
+            Assert.AreEqual(expectedMinBathroom, actualMinBathroom);
+        }
+
+        [TestMethod]
+        public void GetMinCarSpacesQuery_MinCarSpacesReturned_Test()
+        {
+            // Arrange
+            var testMinCarSpaces = PropertyFinder.CarSpace.TwoPlus;
+            var expectedMinCarSpaces = "numParkingSpaces=2";
+
+            // Act
+            var actualMinCarSpaces = TestPropertyFinder.GetMinCarSpacesQuery(testMinCarSpaces);
+
+            // Assert
+            Assert.AreEqual(expectedMinCarSpaces, actualMinCarSpaces);
+        }
+
+        [TestMethod]
+        public void GetConstructionTypeQuery_ConstructionTypeReturned_Test()
+        {
+            // Arrange
+            var testConstructionType = PropertyFinder.ConstructionType.EstablishedProperty;
+            var expectedConstructionType = "newOrEstablished=established";
+
+            // Act
+            var actualConstructionType = TestPropertyFinder.GetConstructionTypeQuery(testConstructionType);
+
+            // Assert
+            Assert.AreEqual(expectedConstructionType, actualConstructionType);
+        }
+
+        [TestMethod]
+        public void GetMinLandQuery_MinLandReturnedEmpty_Test()
+        {
+            // Arrange
+            var testMinLand = 0;
+            var expectedMinLand = string.Empty;
+
+            // Act
+            var actualMinLand = TestPropertyFinder.GetMinLandQuery(testMinLand);
+
+            // Assert
+            Assert.AreEqual(expectedMinLand, actualMinLand);
+        }
+
+        [TestMethod]
+        public void GetMinLandQuery_MinLandReturned_Test()
+        {
+            // Arrange
+            var testMinLand = 700;
+            var expectedMinLand = "size-700-";
+
+            // Act
+            var actualMinLand = TestPropertyFinder.GetMinLandQuery(testMinLand);
+
+            // Assert
+            Assert.AreEqual(expectedMinLand, actualMinLand);
         }
     }
 }

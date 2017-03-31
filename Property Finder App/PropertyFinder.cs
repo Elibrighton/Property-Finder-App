@@ -19,6 +19,9 @@ namespace Property_Finder_App
         public Dictionary<Bed, string> Beds;
         public Dictionary<Location, string> Locations;
         public Dictionary<Price, string> Prices;
+        public Dictionary<Bathroom, string> Bathrooms;
+        public Dictionary<CarSpace, string> CarSpaces;
+        public Dictionary<ConstructionType, string> ConstructionTypes;
 
         public PropertyFinder()
         {
@@ -26,6 +29,36 @@ namespace Property_Finder_App
             PropertyTypes = GetPropertyTypes();
             Beds = GetBeds();
             Prices = GetPrices();
+            Bathrooms = GetBathrooms();
+            CarSpaces = GetCarSpaces();
+            ConstructionTypes = GetConstructionTypes();
+        }
+
+        public enum ConstructionType
+        {
+            Any,
+            NewConstruction,
+            EstablishedProperty
+        }
+
+        public enum CarSpace
+        {
+            Any,
+            OnePlus,
+            TwoPlus,
+            ThreePlus,
+            FourPlus,
+            FivePlus
+        }
+
+        public enum Bathroom
+        {
+            Any,
+            OnePlus,
+            TwoPlus,
+            ThreePlus,
+            FourPlus,
+            FivePlus
         }
 
         public enum Location
@@ -84,6 +117,42 @@ namespace Property_Finder_App
             NineHundredThousand,
             NineHundredAndFiftyThousand,
             OneMillion
+        }
+
+        public Dictionary<ConstructionType, string> GetConstructionTypes()
+        {
+            return new Dictionary<ConstructionType, string>()
+            {
+                { ConstructionType.Any, string.Empty },
+                { ConstructionType.NewConstruction, "new" },
+                { ConstructionType.EstablishedProperty, "established" }
+            };
+        }
+
+        public Dictionary<CarSpace, string> GetCarSpaces()
+        {
+            return new Dictionary<CarSpace, string>()
+            {
+                { CarSpace.Any, string.Empty },
+                { CarSpace.OnePlus, "1" },
+                { CarSpace.TwoPlus, "2" },
+                { CarSpace.ThreePlus, "3" },
+                { CarSpace.FourPlus, "4" },
+                { CarSpace.FivePlus, "5" },
+            };
+        }
+
+        public Dictionary<Bathroom, string> GetBathrooms()
+        {
+            return new Dictionary<Bathroom, string>()
+            {
+                { Bathroom.Any, string.Empty },
+                { Bathroom.OnePlus, "1" },
+                { Bathroom.TwoPlus, "2" },
+                { Bathroom.ThreePlus, "3" },
+                { Bathroom.FourPlus, "4" },
+                { Bathroom.FivePlus, "5" },
+            };
         }
 
         public Dictionary<Price, string> GetPrices()
@@ -156,113 +225,190 @@ namespace Property_Finder_App
             };
         }
 
-        public string GetBuyUrl(PropertyType propertyType, Bed minBeds, Price minPrice, Price maxPrice, Location location, Bed maxBeds, int listing)
+        public string GetBuyUrl(PropertyType propertyType, Bed minBeds, int minLand, Price minPrice, Price maxPrice, Location location, ConstructionType constructionType, CarSpace minCarSpaces, Bathroom minBathrooms, Bed maxBeds, bool isIncludingSurroundingSuburbs, bool isExcludingPropertiesUnderContract, int listing)
         {
+            var parameters = GetParameters(constructionType, 
+                                            minCarSpaces, 
+                                            minBathrooms, 
+                                            minBeds, 
+                                            maxBeds,
+                                            isIncludingSurroundingSuburbs,
+                                            isExcludingPropertiesUnderContract,
+                                            source);
+
             return string.Concat(realEstateDomain,
-                                        GetPropertyTypes(propertyType),
-                                        GetMinBeds(minBeds),
-                                        GetPriceRange(minPrice, maxPrice),
-                                        GetLocation(location), 
+                                        GetPropertyTypesQuery(propertyType),
+                                        GetMinBedsQuery(minBeds),
+                                        GetMinLandQuery(minLand),
+                                        GetPriceRangeQuery(minPrice, maxPrice),
+                                        GetLocationQuery(location), 
                                         "/",
-                                        GetListing(listing),
-                                        GetParameters(minBeds, maxBeds, source));
+                                        GetListingQuery(listing),
+                                        parameters);
         }
 
-        public string GetParameters(Bed minBeds, Bed maxBeds, string source)
+        public string GetMinLandQuery(int minLand)
+        {
+            var minLandQuery = string.Empty;
+
+            if (minLand > 0)
+            {
+                minLandQuery = string.Concat("size-", minLand, "-");
+            }
+
+            return minLandQuery;
+        }
+
+        public string GetParameters(ConstructionType constructionType, CarSpace minCarSpaces, Bathroom minBathrooms, Bed minBeds, Bed maxBeds, bool isIncudingSurroundingSuburbs, bool isExcludingPropertiesUnderContract, string source)
         {
             var parameters = "?";
 
-            if (minBeds != Bed.Any)
+            if (constructionType != ConstructionType.Any)
             {
-                parameters += GetMaxBeds(maxBeds);
+                parameters += GetConstructionTypeQuery(constructionType);
                 parameters += "&";
             }
 
-            parameters += GetSource(source);
+            if (minCarSpaces != CarSpace.Any)
+            {
+                parameters += GetMinCarSpacesQuery(minCarSpaces);
+                parameters += "&";
+            }
+
+            if (minBathrooms != Bathroom.Any)
+            {
+                parameters += GetMinBathroomsQuery(minBathrooms);
+                parameters += "&";
+            }
+
+            if (minBeds != Bed.Any)
+            {
+                parameters += GetMaxBedsQuery(maxBeds);
+                parameters += "&";
+            }
+
+            if (!isIncudingSurroundingSuburbs)
+            {
+                parameters += GetSurroundingSuburbsQuery();
+                parameters += "&";
+            }
+
+            if (isExcludingPropertiesUnderContract)
+            {
+                parameters += GetPropertiesUnderContractQuery();
+                parameters += "&";
+            }
+
+            parameters += GetSourceQuery(source);
 
             return parameters;
         }
 
-        public string GetSource(string source)
+        public string GetSurroundingSuburbsQuery()
+        {
+            return "includeSurrounding=false";
+        }
+
+        public string GetPropertiesUnderContractQuery()
+        {
+            return "misc=ex-under-contract";
+        }
+
+        public string GetConstructionTypeQuery(ConstructionType constructionType)
+        {
+            return string.Concat("newOrEstablished=", ConstructionTypes[constructionType]);
+        }
+
+        public string GetMinCarSpacesQuery(CarSpace minCarSpaces)
+        {
+            return string.Concat("numParkingSpaces=", CarSpaces[minCarSpaces]);
+        }
+
+        public string GetMinBathroomsQuery(Bathroom minBathrooms)
+        {
+            return string.Concat("numBaths=", Bathrooms[minBathrooms]);
+        }
+
+        public string GetSourceQuery(string source)
         {
             return string.Concat("source=", source);
         }
 
-        public string GetPriceRange(Price minPrice, Price maxPrice)
+        public string GetPriceRangeQuery(Price minPrice, Price maxPrice)
         {
-            var priceRange = string.Empty;
+            var priceRangeQuery = string.Empty;
 
             if (!(minPrice == Price.MinAny && maxPrice == Price.MaxAny))
             {
-                priceRange = string.Concat("between-", Prices[minPrice], "-", Prices[maxPrice], "-").ToLower();
+                priceRangeQuery = string.Concat("between-", Prices[minPrice], "-", Prices[maxPrice], "-").ToLower();
             }
 
-            return priceRange;
+            return priceRangeQuery;
         }
 
-        public string GetMaxBeds(Bed maxBeds)
+        public string GetMaxBedsQuery(Bed maxBeds)
         {
             return string.Concat("maxBeds=", Beds[maxBeds]);
         }
 
-        public string GetListing(int listing)
+        public string GetListingQuery(int listing)
         {
             return string.Concat("list-", listing.ToString());
         }
 
-        public string GetLocation(Location location)
+        public string GetLocationQuery(Location location)
         {
-            var value = string.Empty;
+            var locationQuery = string.Empty;
 
             if (Locations.ContainsKey(location))
             {
-                value = string.Concat("in-", Locations[location].Replace(",", "%2c").Replace(" ", "+").Replace(";", "%3b").ToLower());
+                locationQuery = string.Concat("in-", Locations[location].Replace(",", "%2c").Replace(" ", "+").Replace(";", "%3b").ToLower());
             }
 
-            return value;
+            return locationQuery;
         }
 
-        public string GetMinBeds(Bed minBeds)
+        public string GetMinBedsQuery(Bed minBeds)
         {
-            var value = string.Empty;
+            var minBedsQuery = string.Empty;
 
             if (Beds.ContainsKey(minBeds))
             {
                 switch (minBeds)
                 {
                     case Bed.Studio:
-                        value = string.Concat("with-", Beds[minBeds], "-");
+                        minBedsQuery = string.Concat("with-", Beds[minBeds], "-");
                         break;
                     case Bed.One:
-                        value = string.Concat("with-", Beds[minBeds], "-bedroom-");
+                        minBedsQuery = string.Concat("with-", Beds[minBeds], "-bedroom-");
                         break;
                     case Bed.Two:
                     case Bed.Three:
                     case Bed.Four:
                     case Bed.Five:
-                        value = string.Concat("with-", Beds[minBeds], "-bedrooms-");
+                        minBedsQuery = string.Concat("with-", Beds[minBeds], "-bedrooms-");
                         break;
                     default:
                         break;
                 }
             }
 
-            return value;
+            return minBedsQuery;
         }
 
-        public string GetPropertyTypes(PropertyType propertyType)
+        public string GetPropertyTypesQuery(PropertyType propertyType)
         {
-            var value = string.Empty;
+            var propertyTypesQuery = string.Empty;
 
             if (PropertyTypes.ContainsKey(propertyType))
             {
                 if (propertyType != PropertyType.All)
                 {
-                    value = string.Concat("property-", PropertyTypes[propertyType], "-");
+                    propertyTypesQuery = string.Concat("property-", PropertyTypes[propertyType], "-");
                 }
             }
 
-            return value;
+            return propertyTypesQuery;
         }
 
         public string GetWebResponse(string url)
