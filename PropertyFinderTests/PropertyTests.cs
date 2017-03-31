@@ -19,8 +19,58 @@ namespace PropertyFinderTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "Property response is null")]
         public void InstantiateProperty_PropertyInstantiated_Test()
+        {
+            // Arrange
+            var expectedAddress = new Address(testPropertyResponse)
+            {
+                StreetAddress = "18 Callitris Street",
+                AddressLocality = "Acacia Ridge",
+                AddressRegion = "Qld",
+                PostalCode = "4110"
+            };
+
+            var expectedPropertyNo = 125115106;
+            var testPath = "/property-house-qld-upper+mount+gravatt-125119870";
+            var expectedUrl = "http://www.realestate.com.au/property-house-qld-upper+mount+gravatt-125119870";
+            var expectedPrice = "Auction";
+            var expectedPropertyType = "House";
+            var expectedBedrooms = 3;
+            var expectedBathrooms = 2;
+            var expectedLandSize = "1055 m� (approx)";
+            var expectedCarSpaces = 2;
+
+            // Act
+            var actualAddress = testProperty.Address;
+            var actualPropertyNo = testProperty.PropertyNo;
+            testProperty.SetUrl(testPath);
+            var actualUrl = testProperty.Url;
+            var actualPrice = testProperty.Price;
+            var actualPropertyType = testProperty.PropertyType;
+            var actualBedrooms = testProperty.Bedrooms;
+            var actualBathrooms = testProperty.Bathrooms;
+            var actualLandSize = testProperty.LandSize;
+            var actualCarSpaces = testProperty.CarSpaces;
+
+
+            // Assert
+            Assert.AreEqual(expectedAddress.StreetAddress, actualAddress.StreetAddress);
+            Assert.AreEqual(expectedAddress.AddressLocality, actualAddress.AddressLocality);
+            Assert.AreEqual(expectedAddress.AddressRegion, actualAddress.AddressRegion);
+            Assert.AreEqual(expectedAddress.PostalCode, actualAddress.PostalCode);
+            Assert.AreEqual(expectedPropertyNo, actualPropertyNo);
+            Assert.AreEqual(expectedUrl, actualUrl);
+            Assert.AreEqual(expectedPrice, actualPrice);
+            Assert.AreEqual(expectedPropertyType, actualPropertyType);
+            Assert.AreEqual(expectedBedrooms, actualBedrooms);
+            Assert.AreEqual(expectedBathrooms, actualBathrooms);
+            Assert.AreEqual(expectedLandSize, actualLandSize);
+            Assert.AreEqual(expectedCarSpaces, actualCarSpaces);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), "Property response is null")]
+        public void InstantiateProperty_ArgumentNullExceptionRaised_Test()
         {
             // Arrange
             var testPropertyResponse = string.Empty;
