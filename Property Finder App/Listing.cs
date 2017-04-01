@@ -35,10 +35,14 @@ namespace Property_Finder_App
         public List<string> GetListingPageUrls(int totalListings)
         {
             var listingPageUrls = new List<string>();
+            var listingPageUrl = url;
+            listingPageUrls.Add(listingPageUrl);
 
-            for (int i = 0; i < totalListings; i++)
+            for (int i = 1; i < totalListings; i++)
             {
-                var listingPageUrl = url.Replace(string.Concat("list-", i), string.Concat("list-", i + 1));
+                var currentList = string.Concat("list-", i);
+                var nextList = string.Concat("list-", i + 1);
+                listingPageUrl = listingPageUrl.Replace(currentList, nextList);
                 listingPageUrls.Add(listingPageUrl);
             }
 
@@ -52,7 +56,7 @@ namespace Property_Finder_App
             foreach (var listingPageUrl in listingPageUrls)
             {
                 search = new Search();
-                search.SetUrl(url);
+                search.SetUrl(listingPageUrl);
                 response = search.GetWebResponse();
                 listingPage = new ListingPage(response);
                 listingPage.SetProperties();

@@ -11,7 +11,7 @@ namespace Property_Finder_App
         public Address Address { get; set; }
         public int PropertyNo { get; set; }
         public string Url { get; private set; }
-        public string Price { get; set; }
+        public int Price { get; set; }
         public string PropertyType { get; set; }
         public int Bedrooms { get; set; }
         public int Bathrooms { get; set; }
@@ -44,6 +44,8 @@ namespace Property_Finder_App
 
         public int GetPropertyNo()
         {
+            //<span class="property_id">Property No. 125115106</span>
+
             var propertyNo = 0;
             var spanValue = response.GetSpanClassValue("property_id");
 
@@ -60,11 +62,25 @@ namespace Property_Finder_App
             return propertyNo;
         }
 
-        public string GetPrice()
+        public int GetPrice()
         {
             //<p class="priceText">Auction</p>
 
-            return response.GetParagraphClassValue("priceText");
+            var price = 0;
+            var spanValue = response.GetParagraphClassValue("priceText");
+
+            if (!string.IsNullOrEmpty(spanValue))
+            {
+                var priceText = RegexHelper.GetRegexMatchValue(spanValue, @"\$\d*,\d*,?(\d?){3}");
+
+                if (!string.IsNullOrEmpty(priceText))
+                {
+                    priceText = priceText.Replace("$", "").Replace(",", "");
+                    price = Convert.ToInt32(priceText);
+                }
+            }
+
+            return price;
         }
 
         public string GetPropertyType()
@@ -98,6 +114,11 @@ namespace Property_Finder_App
             if (!string.IsNullOrEmpty(bathroomsText))
             {
                 bathrooms = Convert.ToInt32(bathroomsText);
+
+                if (bathrooms < 2)
+                {
+                    bathrooms = bathrooms;
+                }
             }
 
             return bathrooms;
@@ -123,16 +144,56 @@ namespace Property_Finder_App
             return landSize;
         }
         
-        public int GetCarSpaces()
+        public int GetCarportSpaces()
+        {
+            //<li>Carport Spaces:<span>1</span></li>
+
+            var carportSpaces = 0;
+            var carportSpacesText = response.GetLiValue("Carport\\sSpaces:");
+
+            if (!string.IsNullOrEmpty(carportSpacesText))
+            {
+                carportSpaces = Convert.ToInt32(carportSpacesText);
+            }
+
+            return carportSpaces;
+        }
+
+        public int GetGarageSpaces()
         {
             //<li>Garage Spaces:<span>2</span></li>
 
-            var carSpaces = 0;
-            var carSpacesText = response.GetLiValue("Garage\\sSpaces:");
-            if (!string.IsNullOrEmpty(carSpacesText))
+            var garageSpaces = 0;
+            var garageSpacesText = response.GetLiValue("Garage\\sSpaces:");
+
+            if (!string.IsNullOrEmpty(garageSpacesText))
             {
-                carSpaces = Convert.ToInt32(carSpacesText);
+                garageSpaces = Convert.ToInt32(garageSpacesText);
             }
+
+            return garageSpaces;
+        }
+
+        public int GetOtherCarSpaces()
+        {
+            //<li>Open Car Spaces:<span>1</span></li>
+
+            var otherCarSpaces = 0;
+            var otherCarSpacesText = response.GetLiValue("Open\\sCar\\sSpaces:");
+
+            if (!string.IsNullOrEmpty(otherCarSpacesText))
+            {
+                otherCarSpaces = Convert.ToInt32(otherCarSpacesText);
+            }
+
+            return otherCarSpaces;
+        }
+
+        public int GetCarSpaces()
+        {
+            var carSpaces = GetCarportSpaces();
+            carSpaces += GetGarageSpaces();
+            carSpaces += GetOtherCarSpaces();
 
             return carSpaces;
         }

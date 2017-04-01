@@ -81,7 +81,7 @@ namespace PropertyFinderTests
         public void GetPrice_PriceReturned_Test()
         {
             // Arrange
-            var expectedPrice = "Auction";
+            var expectedPrice = 0;
 
             // Act
             var actualPrice = testProperty.GetPrice();
@@ -149,7 +149,7 @@ namespace PropertyFinderTests
             var expectedCarSpaces = 2;
 
             // Act
-            var actualCarSpaces = testProperty.GetCarSpaces();
+            var actualCarSpaces = testProperty.GetCarportSpaces();
 
             // Assert
             Assert.AreEqual(expectedCarSpaces, actualCarSpaces);
