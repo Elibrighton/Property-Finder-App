@@ -57,6 +57,9 @@
     <Compile Include="RegexHelperTests.cs" />
     <Compile Include="PropertyTests.cs" />
     <Compile Include="AddressTests.cs" />
+    <Compile Include="ListingTests.cs" />
+    <Compile Include="PropertyFinderTests.cs" />
+    <Compile Include="ListingPageTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Property Finder App\Property Finder App.csproj">

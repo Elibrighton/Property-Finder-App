@@ -36,12 +36,12 @@ namespace PropertyFinderTests
             var testMinBathrooms = Search.Bathroom.Any;
             var testMaxBeds = Search.Bed.Any;
             var testIsIncludingSurroundingSuburbs = true;
-            var testIsExcludingPropertiesUnderContract = false;
-            var testListing = 1;
-            var expectedUrl = "http://www.realestate.com.au/buy/in-brisbane+-+greater+region%2c+qld%3b+/list-1?source=location-search";
+            var testIsExcludingPropertiesUnderContract = false;var expectedUrl = "http://www.realestate.com.au/buy/in-brisbane+-+greater+region%2c+qld%3b+/list-1?source=location-search";
 
             // Act
-            var actualUrl = testSearch.GetUrl(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testListing);
+            testSearch.Set(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract);
+            testSearch.GenerateUrl();
+            var actualUrl = testSearch.Url;
 
             // Assert
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -63,11 +63,12 @@ namespace PropertyFinderTests
             var testMaxBeds = Search.Bed.Any;
             var testIsIncludingSurroundingSuburbs = true;
             var testIsExcludingPropertiesUnderContract = false;
-            var testListing = 1;
             var expectedUrl = "http://www.realestate.com.au/buy/property-house-in-brisbane+-+greater+region%2c+qld%3b+/list-1?source=location-search";
 
             // Act
-            var actualUrl = testSearch.GetUrl(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testListing);
+            testSearch.Set(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract);
+            testSearch.GenerateUrl();
+            var actualUrl = testSearch.Url;
 
             // Assert
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -89,11 +90,12 @@ namespace PropertyFinderTests
             var testMaxBeds = Search.Bed.Any;
             var testIsIncludingSurroundingSuburbs = true;
             var testIsExcludingPropertiesUnderContract = false;
-            var testListing = 1;
             var expectedUrl = "http://www.realestate.com.au/buy/with-2-bedrooms-in-brisbane+-+greater+region%2c+qld%3b+/list-1?maxBeds=any&source=location-search";
 
             // Act
-            var actualUrl = testSearch.GetUrl(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testListing);
+            testSearch.Set(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract);
+            testSearch.GenerateUrl();
+            var actualUrl = testSearch.Url;
 
             // Assert
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -115,11 +117,12 @@ namespace PropertyFinderTests
             var testMaxBeds = Search.Bed.Four;
             var testIsIncludingSurroundingSuburbs = true;
             var testIsExcludingPropertiesUnderContract = false;
-            var testListing = 1;
             var expectedUrl = "http://www.realestate.com.au/buy/with-2-bedrooms-in-brisbane+-+greater+region%2c+qld%3b+/list-1?maxBeds=4&source=location-search";
 
             // Act
-            var actualUrl = testSearch.GetUrl(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testListing);
+            testSearch.Set(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract);
+            testSearch.GenerateUrl();
+            var actualUrl = testSearch.Url;
 
             // Assert
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -141,11 +144,12 @@ namespace PropertyFinderTests
             var testMaxBeds = Search.Bed.Any;
             var testIsIncludingSurroundingSuburbs = true;
             var testIsExcludingPropertiesUnderContract = false;
-            var testListing = 1;
             var expectedUrl = "http://www.realestate.com.au/buy/between-500000-any-in-brisbane+-+greater+region%2c+qld%3b+/list-1?source=location-search";
 
             // Act
-            var actualUrl = testSearch.GetUrl(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testListing);
+            testSearch.Set(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract);
+            testSearch.GenerateUrl();
+            var actualUrl = testSearch.Url;
 
             // Assert
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -167,11 +171,12 @@ namespace PropertyFinderTests
             var testMaxBeds = Search.Bed.Any;
             var testIsIncludingSurroundingSuburbs = true;
             var testIsExcludingPropertiesUnderContract = false;
-            var testListing = 1;
             var expectedUrl = "http://www.realestate.com.au/buy/between-0-750000-in-brisbane+-+greater+region%2c+qld%3b+/list-1?source=location-search";
 
             // Act
-            var actualUrl = testSearch.GetUrl(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testListing);
+            testSearch.Set(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract);
+            testSearch.GenerateUrl();
+            var actualUrl = testSearch.Url;
 
             // Assert
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -193,11 +198,12 @@ namespace PropertyFinderTests
             var testMaxBeds = Search.Bed.Four;
             var testIsIncludingSurroundingSuburbs = true;
             var testIsExcludingPropertiesUnderContract = true;
-            var testListing = 1;
             var expectedUrl = "http://www.realestate.com.au/buy/property-house-with-3-bedrooms-between-250000-500000-in-brisbane+-+greater+region%2c+qld%3b+/list-1?newOrEstablished=established&numParkingSpaces=2&numBaths=2&maxBeds=4&misc=ex-under-contract&source=location-search";
 
             // Act
-            var actualUrl = testSearch.GetUrl(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testListing);
+            testSearch.Set(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract);
+            testSearch.GenerateUrl();
+            var actualUrl = testSearch.Url;
 
             // Assert
             Assert.AreEqual(expectedUrl, actualUrl);
@@ -216,21 +222,20 @@ namespace PropertyFinderTests
 
         //    // Assert
         //    Assert.AreEqual(expectedResponse, actualResponse);
+        ////}
+
+        //[TestMethod]
+        //public void GetTotalHomes_TotalReturned_Test()
+        //{
+        //    // Arrange
+        //    var expectedTotalHomes = 11308;
+
+        //    // Act
+        //    var actualTotalHomes = testSearch.GetTotalHomes();
+
+        //    // Assert
+        //    Assert.AreEqual(expectedTotalHomes, actualTotalHomes);
         //}
-
-        [TestMethod]
-        public void GetTotalHomes_TotalReturned_Test()
-        {
-            // Arrange
-            var testParagraph = "Showing 1 - 20 of 11308 total results";
-            var expectedTotalHomes = 11308;
-
-            // Act
-            var actualTotalHomes = testSearch.GetTotalHomes(testParagraph);
-
-            // Assert
-            Assert.AreEqual(expectedTotalHomes, actualTotalHomes);
-        }
 
         [TestMethod]
         public void GetPropertyTypes_PropertyTypeRetured_Test()
@@ -648,94 +653,136 @@ namespace PropertyFinderTests
             // Assert
             Assert.AreEqual(expectedMinLand, actualMinLand);
         }
-
-        [TestMethod]
-        public void GetListedProperties_ListPropertiesReturned_Test()
-        {
-            // Arrange
-            var expectedListedProperties = new List<string>()
-            {
-                "/property-house-qld-upper+mount+gravatt-125119870",
-                "/property-house-qld-stafford-125119566",
-                "/property-house-qld-kedron-125118974",
-                "/property-house-qld-graceville-125118530",
-                "/property-house-qld-sunnybank-125117498",
-                "/property-house-qld-new+farm-124919330",
-                "/property-house-qld-aspley-125117566",
-                "/property-house-qld-camp+hill-125117530",
-                "/property-house-qld-brighton-125117378",
-                "/property-house-qld-kelvin+grove-125117386",
-                "/property-house-qld-new+farm-125117098",
-                "/property-house-qld-yeronga-125117014",
-                "/property-house-qld-fairfield-125116802",
-                "/property-house-qld-wakerley-124854238",
-                "/property-house-qld-wakerley-124633458",
-                "/property-house-qld-heathwood-124819522"
-            };
-
-            // Act
-            var actualListedProperties = testSearch.GetListedProperties(testSearchResponse);
-
-            // Assert
-            Assert.AreEqual(expectedListedProperties.Count, actualListedProperties.Count);
-            Assert.AreEqual(expectedListedProperties[0], actualListedProperties[0]);
-            Assert.AreEqual(expectedListedProperties[1], actualListedProperties[1]);
-            Assert.AreEqual(expectedListedProperties[2], actualListedProperties[2]);
-            Assert.AreEqual(expectedListedProperties[3], actualListedProperties[3]);
-            Assert.AreEqual(expectedListedProperties[4], actualListedProperties[4]);
-            Assert.AreEqual(expectedListedProperties[5], actualListedProperties[5]);
-            Assert.AreEqual(expectedListedProperties[6], actualListedProperties[6]);
-            Assert.AreEqual(expectedListedProperties[7], actualListedProperties[7]);
-            Assert.AreEqual(expectedListedProperties[8], actualListedProperties[8]);
-            Assert.AreEqual(expectedListedProperties[9], actualListedProperties[9]);
-            Assert.AreEqual(expectedListedProperties[10], actualListedProperties[10]);
-            Assert.AreEqual(expectedListedProperties[11], actualListedProperties[11]);
-            Assert.AreEqual(expectedListedProperties[12], actualListedProperties[12]);
-            Assert.AreEqual(expectedListedProperties[13], actualListedProperties[13]);
-            Assert.AreEqual(expectedListedProperties[14], actualListedProperties[14]);
-            Assert.AreEqual(expectedListedProperties[15], actualListedProperties[15]);
-        }
         
-        [TestMethod]
-        public void GetTotalListings_TotalListingsReturnedZero_Test()
-        {
-            // Arrange
-            var testTotalHomes = 0;
-            var expectedTotalHomes = 0;
+        //[TestMethod]
+        //public void GetListing_ListingReturned_Test()
+        //{
+        //    // Arrange
+        //    var testUrl = "http://www.realestate.com.au/buy/property-house-with-3-bedrooms-between-250000-500000-in-brisbane+-+greater+region%2c+qld%3b+/list-1?newOrEstablished=established&numParkingSpaces=2&numBaths=2&maxBeds=4&misc=ex-under-contract&source=location-search";
+            
+        //    // Act
+        //    var actualListing = testSearch.GetListing(testUrl);
 
-            // Act
-            var actualTotalHomes = testSearch.GetTotalListings(testTotalHomes);
+        //    // Assert
+        //    //Assert.AreEqual(expectedListing, actualListing);
+        //}
 
-            // Assert
-            Assert.AreEqual(expectedTotalHomes, actualTotalHomes);
-        }
+        //[TestMethod]
+        //public void GetListedProperties_ListPropertiesReturned_Test()
+        //{
+        //    // Arrange
+        //    var expectedListedProperties = new List<string>()
+        //    {
+        //        "/property-house-qld-upper+mount+gravatt-125119870",
+        //        "/property-house-qld-stafford-125119566",
+        //        "/property-house-qld-kedron-125118974",
+        //        "/property-house-qld-graceville-125118530",
+        //        "/property-house-qld-sunnybank-125117498",
+        //        "/property-house-qld-new+farm-124919330",
+        //        "/property-house-qld-aspley-125117566",
+        //        "/property-house-qld-camp+hill-125117530",
+        //        "/property-house-qld-brighton-125117378",
+        //        "/property-house-qld-kelvin+grove-125117386",
+        //        "/property-house-qld-new+farm-125117098",
+        //        "/property-house-qld-yeronga-125117014",
+        //        "/property-house-qld-fairfield-125116802",
+        //        "/property-house-qld-wakerley-124854238",
+        //        "/property-house-qld-wakerley-124633458",
+        //        "/property-house-qld-heathwood-124819522"
+        //    };
 
-        [TestMethod]
-        public void GetTotalListings_TotalListingsReturned1_Test()
-        {
-            // Arrange
-            var testTotalHomes = 20;
-            var expectedTotalHomes = 1;
+        //    // Act
+        //    var actualListedProperties = testSearch.GetListedProperties(testSearchResponse);
 
-            // Act
-            var actualTotalHomes = testSearch.GetTotalListings(testTotalHomes);
+        //    // Assert
+        //    Assert.AreEqual(expectedListedProperties.Count, actualListedProperties.Count);
+        //    Assert.AreEqual(expectedListedProperties[0], actualListedProperties[0]);
+        //    Assert.AreEqual(expectedListedProperties[1], actualListedProperties[1]);
+        //    Assert.AreEqual(expectedListedProperties[2], actualListedProperties[2]);
+        //    Assert.AreEqual(expectedListedProperties[3], actualListedProperties[3]);
+        //    Assert.AreEqual(expectedListedProperties[4], actualListedProperties[4]);
+        //    Assert.AreEqual(expectedListedProperties[5], actualListedProperties[5]);
+        //    Assert.AreEqual(expectedListedProperties[6], actualListedProperties[6]);
+        //    Assert.AreEqual(expectedListedProperties[7], actualListedProperties[7]);
+        //    Assert.AreEqual(expectedListedProperties[8], actualListedProperties[8]);
+        //    Assert.AreEqual(expectedListedProperties[9], actualListedProperties[9]);
+        //    Assert.AreEqual(expectedListedProperties[10], actualListedProperties[10]);
+        //    Assert.AreEqual(expectedListedProperties[11], actualListedProperties[11]);
+        //    Assert.AreEqual(expectedListedProperties[12], actualListedProperties[12]);
+        //    Assert.AreEqual(expectedListedProperties[13], actualListedProperties[13]);
+        //    Assert.AreEqual(expectedListedProperties[14], actualListedProperties[14]);
+        //    Assert.AreEqual(expectedListedProperties[15], actualListedProperties[15]);
+        //}
 
-            // Assert
-            Assert.AreEqual(expectedTotalHomes, actualTotalHomes);
-        }
+        //[TestMethod]
+        //public void GetTotalListings_TotalListingsReturnedZero_Test()
+        //{
+        //    // Arrange
+        //    var testTotalHomes = 0;
+        //    var expectedTotalHomes = 0;
 
-        [TestMethod]
-        public void GetTotalListings_TotalListingsReturned2_Test()
-        {
-            // Arrange
-            var testTotalHomes = 21;
-            var expectedTotalHomes = 2;
+        //    // Act
+        //    var actualTotalHomes = testSearch.GetTotalListings(testTotalHomes);
 
-            // Act
-            var actualTotalHomes = testSearch.GetTotalListings(testTotalHomes);
+        //    // Assert
+        //    Assert.AreEqual(expectedTotalHomes, actualTotalHomes);
+        //}
 
-            // Assert
-            Assert.AreEqual(expectedTotalHomes, actualTotalHomes);
-        }
+        //[TestMethod]
+        //public void GetTotalListings_TotalListingsReturned1_Test()
+        //{
+        //    // Arrange
+        //    var testTotalHomes = 20;
+        //    var expectedTotalHomes = 1;
+
+        //    // Act
+        //    var actualTotalHomes = testSearch.GetTotalListings(testTotalHomes);
+
+        //    // Assert
+        //    Assert.AreEqual(expectedTotalHomes, actualTotalHomes);
+        //}
+
+        //[TestMethod]
+        //public void GetTotalListings_TotalListingsReturned2_Test()
+        //{
+        //    // Arrange
+        //    var testTotalHomes = 21;
+        //    var expectedTotalHomes = 2;
+
+        //    // Act
+        //    var actualTotalHomes = testSearch.GetTotalListings(testTotalHomes);
+
+        //    // Assert
+        //    Assert.AreEqual(expectedTotalHomes, actualTotalHomes);
+        //}
+
+        //[TestMethod]
+        //public void GetEverything_EverythingReturned_Test()
+        //{
+        //    // Arrange
+        //    var testPropertyType = Search.PropertyType.House;
+        //    var testMinBeds = Search.Bed.Three;
+        //    var testMinLand = 0;
+        //    var testMinPrice = Search.Price.TwoHundredAndFiftyThousand;
+        //    var testMaxPrice = Search.Price.FiveHundredThousand;
+        //    var testLocation = Search.Location.BrisbaneGreaterRegion;
+        //    var testConstructionType = Search.ConstructionType.EstablishedProperty;
+        //    var testMinCarSpaces = Search.CarSpace.TwoPlus;
+        //    var testMinBathrooms = Search.Bathroom.TwoPlus;
+        //    var testMaxBeds = Search.Bed.Four;
+        //    var testIsIncludingSurroundingSuburbs = true;
+        //    var testIsExcludingPropertiesUnderContract = true;
+        //    var testListing = 1;
+
+        //    // Act
+        //    var actualUrl = testSearch.GetUrl(testPropertyType, testMinBeds, testMinLand, testMinPrice, testMaxPrice, testLocation, testConstructionType, testMinCarSpaces, testMinBathrooms, testMaxBeds, testIsIncludingSurroundingSuburbs, testIsExcludingPropertiesUnderContract, testListing);
+        //    var actualResponse = testSearch.GetWebResponse(actualUrl);
+        //    var actualTotalHomes = testSearch.GetTotalHomes();
+        //    var actualTotalListings = testSearch.GetTotalListings();
+
+
+        //    // Assert
+        //    Assert.AreEqual(expectedTotalHomes, actualTotalHomes);
+        //}
     }
 }

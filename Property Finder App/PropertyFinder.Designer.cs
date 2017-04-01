@@ -1,6 +1,6 @@
 ﻿namespace Property_Finder_App
 {
-    partial class Form1
+    partial class PropertyFinder
     {
         /// <summary>
         /// Required designer variable.

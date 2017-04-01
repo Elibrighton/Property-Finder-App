@@ -94,5 +94,21 @@ namespace Property_Finder_App
 
             return value;
         }
+
+        public static string GetDivIdValue(this string response, string pattern)
+        {
+            if (string.IsNullOrEmpty(pattern)) throw new ArgumentNullException("Pattern is null");
+
+            var value = string.Empty;
+            
+            var matchValue = RegexHelper.GetRegexMatchValue(response, pattern);
+
+            if (!string.IsNullOrEmpty(matchValue))
+            {
+                value = matchValue;
+            }
+
+            return value;
+        }
     }
 }

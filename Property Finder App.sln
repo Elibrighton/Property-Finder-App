@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Property Finder App", "Property Finder App\Property Finder App.csproj", "{A81ABB83-49AC-49B7-9F9A-70DB2BB4703B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyFinderTests", "PropertyFinderTests\PropertyFinderTests.csproj", "{C9BE28CD-ECB0-4CB1-AC1B-63D664E54DE9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Property Finder App Tests", "PropertyFinderTests\Property Finder App Tests.csproj", "{C9BE28CD-ECB0-4CB1-AC1B-63D664E54DE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

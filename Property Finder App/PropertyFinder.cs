@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Property_Finder_App
 {
-    public partial class Form1 : Form
+    public partial class PropertyFinder : Form
     {
-        public Form1()
+        public PropertyFinder()
         {
             InitializeComponent();
         }

@@ -12,11 +12,6 @@ namespace Property_Finder_App
 {
     public class Search
     {
-        private const string realEstateDomain = "http://www.realestate.com.au/";
-        private const string buyController = "buy/";
-        private const string source = "location-search";
-        private const int listingsPerPage = 20;
-
         public Dictionary<PropertyType, string> PropertyTypes;
         public Dictionary<Bed, string> Beds;
         public Dictionary<Location, string> Locations;
@@ -24,7 +19,25 @@ namespace Property_Finder_App
         public Dictionary<Bathroom, string> Bathrooms;
         public Dictionary<CarSpace, string> CarSpaces;
         public Dictionary<ConstructionType, string> ConstructionTypes;
+        public string Url { get; private set; }
 
+        private const string realEstateDomain = "http://www.realestate.com.au/";
+        private const string buyController = "buy/";
+        private const string source = "location-search";
+
+        private PropertyType propertyType;
+        private Bed minBeds;
+        private int minLand;
+        private Price minPrice;
+        private Price maxPrice;
+        private Location location;
+        private ConstructionType constructionType;
+        private CarSpace minCarSpaces;
+        private Bathroom minBathrooms;
+        private Bed maxBeds;
+        private bool isIncludingSurroundingSuburbs;
+        private bool isExcludingPropertiesUnderContract;
+        
         public Search()
         {
             Locations = GetLocations();
@@ -34,6 +47,7 @@ namespace Property_Finder_App
             Bathrooms = GetBathrooms();
             CarSpaces = GetCarSpaces();
             ConstructionTypes = GetConstructionTypes();
+
         }
 
         public enum ConstructionType
@@ -227,7 +241,28 @@ namespace Property_Finder_App
             };
         }
 
-        public string GetUrl(PropertyType propertyType, Bed minBeds, int minLand, Price minPrice, Price maxPrice, Location location, ConstructionType constructionType, CarSpace minCarSpaces, Bathroom minBathrooms, Bed maxBeds, bool isIncludingSurroundingSuburbs, bool isExcludingPropertiesUnderContract, int listing)
+        public void Set(PropertyType propertyType, Bed minBeds, int minLand, Price minPrice, Price maxPrice, Location location, ConstructionType constructionType, CarSpace minCarSpaces, Bathroom minBathrooms, Bed maxBeds, bool isIncludingSurroundingSuburbs, bool isExcludingPropertiesUnderContract)
+        {
+            this.propertyType = propertyType;
+            this.minBeds = minBeds;
+            this.minLand = minLand;
+            this.minPrice = minPrice;
+            this.maxPrice = maxPrice;
+            this.location = location;
+            this.constructionType = constructionType;
+            this.minCarSpaces = minCarSpaces;
+            this.minBathrooms = minBathrooms;
+            this.maxBeds = maxBeds;
+            this.isIncludingSurroundingSuburbs = isIncludingSurroundingSuburbs;
+            this.isExcludingPropertiesUnderContract = isExcludingPropertiesUnderContract;
+        }
+
+        public void SetUrl(string url)
+        {
+            Url = url;
+        }
+
+        public void GenerateUrl()
         {
             var parameters = GetParameters(constructionType,
                                             minCarSpaces,
@@ -238,7 +273,7 @@ namespace Property_Finder_App
                                             isExcludingPropertiesUnderContract,
                                             source);
 
-            return string.Concat(realEstateDomain,
+            Url = string.Concat(realEstateDomain,
                                         buyController,
                                         GetPropertyTypesQuery(propertyType),
                                         GetMinBedsQuery(minBeds),
@@ -246,7 +281,7 @@ namespace Property_Finder_App
                                         GetPriceRangeQuery(minPrice, maxPrice),
                                         GetLocationQuery(location),
                                         "/",
-                                        GetListingQuery(listing),
+                                        GetListingQuery(1),
                                         parameters);
         }
 
@@ -414,14 +449,14 @@ namespace Property_Finder_App
             return propertyTypesQuery;
         }
 
-        public string GetWebResponse(string url)
+        public string GetWebResponse()
         {
             var responseFromServer = string.Empty;
 
             try
             {
                 // Create a request for the URL.   
-                WebRequest request = WebRequest.Create(url);
+                WebRequest request = WebRequest.Create(Url);
 
                 // If required by the server, set the credentials.  
                 request.Credentials = CredentialCache.DefaultCredentials;
@@ -456,39 +491,38 @@ namespace Property_Finder_App
             return responseFromServer;
         }
 
-        public int GetTotalHomes(string paragraph)
-        {
-            var totalHomes = 0;
-            var patialMatchValue = RegexHelper.GetRegexMatchValue(paragraph, @"\d*\stotal\sresults");
+        //public Listing GetListing(string url)
+        //{
+        //    //// get url
+        //    //// get web response
+        //    //var listing = new Listing();
+        //    //var totalListings = listing.TotalListings;
+        //    //var properties = listing.Properties;
+        //    //var listedPropertyUrls = new List<string>();
 
-            if (!string.IsNullOrEmpty(patialMatchValue))
-            {
-                totalHomes = Convert.ToInt32(RegexHelper.GetRegexMatchValue(patialMatchValue, @"^\d*"));
-            }
+        //    //foreach (var property in properties)
+        //    //{
+        //    //    listedPropertyUrls.Add(property.Url);
+        //    //}
 
-            return totalHomes;
-        }
+        //    //for (int i = 1; i < totalListings; i++)
+        //    //{
+        //    //    // get url with next list number
+        //    //    // get web response
+        //    //    listing = new Listing(string.Empty);
+        //    //    properties = listing.Properties;
 
-        public List<string> GetListedProperties(string response)
-        {
-            return RegexHelper.GetMatchesList(response, @"/property-house-qld-\D*-\d*").Distinct().ToList();
-        }
+        //    //    foreach (var property in properties)
+        //    //    {
+        //    //        listedPropertyUrls.Add(property.Url);
+        //    //    }
+        //    //}
 
-        public int GetTotalListings(int totalHomes)
-        {
-            var totalListings = 0;
-
-            if (totalHomes > 0)
-            {
-                totalListings = totalHomes / listingsPerPage;
-
-                if (totalHomes % listingsPerPage > 0)
-                {
-                    totalListings++;
-                }
-            }
-
-            return totalListings;
-        }
+        //    //foreach (var url in listedPropertyUrls)
+        //    //{
+        //    //    // get web response
+        //    //    var property = new Property(string.Empty);
+        //    //}
+        //}
     }
 }

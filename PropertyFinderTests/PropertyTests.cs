@@ -31,20 +31,17 @@ namespace PropertyFinderTests
             };
 
             var expectedPropertyNo = 125115106;
-            var testPath = "/property-house-qld-upper+mount+gravatt-125119870";
             var expectedUrl = "http://www.realestate.com.au/property-house-qld-upper+mount+gravatt-125119870";
             var expectedPrice = "Auction";
             var expectedPropertyType = "House";
             var expectedBedrooms = 3;
             var expectedBathrooms = 2;
-            var expectedLandSize = "1055 m� (approx)";
+            var expectedLandSize = 1055;
             var expectedCarSpaces = 2;
 
             // Act
             var actualAddress = testProperty.Address;
             var actualPropertyNo = testProperty.PropertyNo;
-            testProperty.SetUrl(testPath);
-            var actualUrl = testProperty.Url;
             var actualPrice = testProperty.Price;
             var actualPropertyType = testProperty.PropertyType;
             var actualBedrooms = testProperty.Bedrooms;
@@ -59,7 +56,6 @@ namespace PropertyFinderTests
             Assert.AreEqual(expectedAddress.AddressRegion, actualAddress.AddressRegion);
             Assert.AreEqual(expectedAddress.PostalCode, actualAddress.PostalCode);
             Assert.AreEqual(expectedPropertyNo, actualPropertyNo);
-            Assert.AreEqual(expectedUrl, actualUrl);
             Assert.AreEqual(expectedPrice, actualPrice);
             Assert.AreEqual(expectedPropertyType, actualPropertyType);
             Assert.AreEqual(expectedBedrooms, actualBedrooms);
@@ -77,34 +73,6 @@ namespace PropertyFinderTests
 
             // Act
             testProperty = new Property(testPropertyResponse);
-
-            // Assert
-        }
-
-        [TestMethod]
-        public void SetUrl_UrlSet_Test()
-        {
-            // Arrange
-            var testPath = "/property-house-qld-upper+mount+gravatt-125119870";
-            var expectedUrl = "http://www.realestate.com.au/property-house-qld-upper+mount+gravatt-125119870";
-
-            // Act
-            testProperty.SetUrl(testPath);
-            var actualUrl = testProperty.Url;
-
-            // Assert
-            Assert.AreEqual(expectedUrl, actualUrl);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "Property url path is null")]
-        public void GetUrl_ArgumentNullException_Test()
-        {
-            // Arrange
-            var testPath = string.Empty;
-
-            // Act
-            testProperty.SetUrl(testPath);
 
             // Assert
         }
@@ -165,7 +133,7 @@ namespace PropertyFinderTests
         public void GetLandSize_LandSizeReturned_Test()
         {
             // Arrange
-            var expectedLandSize = "1055 m² (approx)";
+            var expectedLandSize = 1055;
 
             // Act
             var actualLandSize = testProperty.GetLandSize();
@@ -185,6 +153,19 @@ namespace PropertyFinderTests
 
             // Assert
             Assert.AreEqual(expectedCarSpaces, actualCarSpaces);
+        }
+
+        [TestMethod]
+        public void GetPropertyNo_PropertyNoReturned_Test()
+        {
+            // Arrange
+            var expectedPropertyNo = 125115106;
+
+            // Act
+            var actualPropertyNo = testProperty.GetPropertyNo();
+
+            // Assert
+            Assert.AreEqual(expectedPropertyNo, actualPropertyNo);
         }
     }
 }
