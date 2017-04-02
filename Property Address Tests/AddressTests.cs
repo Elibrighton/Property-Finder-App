@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Property_Finder_App;
 using System.IO;
+using Property_Finder_App;
 
 namespace PropertyFinderTests
 {
@@ -14,7 +14,7 @@ namespace PropertyFinderTests
         [TestInitialize]
         public void Initialize()
         {
-            testPropertyResponse = File.ReadAllText(@"C:\Users\Dj Music\Documents\Visual Studio 2015\Projects\Property Finder App\PropertyFinderTests\Supplied files\TestPropertyResponse.html");
+            testPropertyResponse = File.ReadAllText(@"C:\Users\Dj Music\Documents\Visual Studio 2015\Projects\Property Finder App\Supplied files\TestPropertyResponse.html");
             testAddress = new Address(testPropertyResponse);
         }
 

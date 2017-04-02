@@ -33,53 +33,67 @@ namespace PropertyFinderTests
 
             if (testListing != null)
             {
+                //foreach (var listingPage in testListing.ListingPages)
+                //{
+                //    foreach (var property in listingPage.Properties)
+                //    {
+                //        System.Diagnostics.Debug.WriteLine(property.PropertyNo);
+                //    }
+                //}
+                //foreach (var listingPage in testListing.ListingPages)
+                //{
+                //    foreach (var property in listingPage.Properties)
+                //    {
+                //        System.Diagnostics.Debug.WriteLine(property.Price);
+                //    }
+                //}
+                //foreach (var listingPage in testListing.ListingPages)
+                //{
+                //    foreach (var property in listingPage.Properties)
+                //    {
+                //        System.Diagnostics.Debug.WriteLine(property.PropertyType);
+                //    }
+                //}
+                //foreach (var listingPage in testListing.ListingPages)
+                //{
+                //    foreach (var property in listingPage.Properties)
+                //    {
+                //        System.Diagnostics.Debug.WriteLine(property.Bedrooms);
+                //    }
+                //}
+                //foreach (var listingPage in testListing.ListingPages)
+                //{
+                //    foreach (var property in listingPage.Properties)
+                //    {
+                //        System.Diagnostics.Debug.WriteLine(property.Bathrooms);
+                //    }
+                //}
+                //foreach (var listingPage in testListing.ListingPages)
+                //{
+                //    foreach (var property in listingPage.Properties)
+                //    {
+                //        System.Diagnostics.Debug.WriteLine(property.LandSize);
+                //    }
+                //}
+                //foreach (var listingPage in testListing.ListingPages)
+                //{
+                //    foreach (var property in listingPage.Properties)
+                //    {
+                //        System.Diagnostics.Debug.WriteLine(property.CarSpaces);
+                //    }
+                //}
+                //foreach (var listingPage in testListing.ListingPages)
+                //{
+                //    foreach (var property in listingPage.Properties)
+                //    {
+                //        System.Diagnostics.Debug.WriteLine(property.PricePerSquareMetre);
+                //    }
+                //}
                 foreach (var listingPage in testListing.ListingPages)
                 {
                     foreach (var property in listingPage.Properties)
                     {
-                        System.Diagnostics.Debug.WriteLine(property.PropertyNo);
-                    }
-                }
-                foreach (var listingPage in testListing.ListingPages)
-                {
-                    foreach (var property in listingPage.Properties)
-                    {
-                        System.Diagnostics.Debug.WriteLine(property.Price);
-                    }
-                }
-                foreach (var listingPage in testListing.ListingPages)
-                {
-                    foreach (var property in listingPage.Properties)
-                    {
-                        System.Diagnostics.Debug.WriteLine(property.PropertyType);
-                    }
-                }
-                foreach (var listingPage in testListing.ListingPages)
-                {
-                    foreach (var property in listingPage.Properties)
-                    {
-                        System.Diagnostics.Debug.WriteLine(property.Bedrooms);
-                    }
-                }
-                foreach (var listingPage in testListing.ListingPages)
-                {
-                    foreach (var property in listingPage.Properties)
-                    {
-                        System.Diagnostics.Debug.WriteLine(property.Bathrooms);
-                    }
-                }
-                foreach (var listingPage in testListing.ListingPages)
-                {
-                    foreach (var property in listingPage.Properties)
-                    {
-                        System.Diagnostics.Debug.WriteLine(property.LandSize);
-                    }
-                }
-                foreach (var listingPage in testListing.ListingPages)
-                {
-                    foreach (var property in listingPage.Properties)
-                    {
-                        System.Diagnostics.Debug.WriteLine(property.CarSpaces);
+                        System.Diagnostics.Debug.WriteLine(property.DistanceFromCity);
                     }
                 }
             }

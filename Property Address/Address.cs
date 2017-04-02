@@ -22,6 +22,10 @@ namespace Property_Finder_App
             PostalCode = GetPostalCode();
         }
 
+        public Address()
+        {
+        }
+
         public string GetStreetAddress()
         {
             return response.GetSpanItemPropValue("streetAddress");

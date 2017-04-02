@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Distance_Finder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,16 +18,26 @@ namespace Property_Finder_App
         public int Bathrooms { get; set; }
         public int LandSize { get; set; }
         public int CarSpaces { get; set; }
+        public int PricePerSquareMetre { get; set; }
+        public float DistanceFromCity { get; set; }
 
         private const string realEstateDomain = "http://www.realestate.com.au/";
 
         private string response;
+        private Address startingAddress;
 
         public Property(string response)
         {
             if (string.IsNullOrEmpty(response)) throw new ArgumentNullException("Property response is null");
 
             this.response = response;
+            startingAddress = new Address
+            {
+                StreetAddress = "Central Station",
+                AddressLocality = "Brisbane City",
+                AddressRegion = "Qld",
+                PostalCode = "4000"
+            };
             Address = new Address(response);
             PropertyNo = GetPropertyNo();
             Price = GetPrice();
@@ -35,6 +46,50 @@ namespace Property_Finder_App
             Bathrooms = GetBathrooms();
             LandSize = GetLandSize();
             CarSpaces = GetCarSpaces();
+            PricePerSquareMetre = GetPricePerSquareMetre();
+            DistanceFromCity = GetDistanceFromCity(Address);
+        }
+
+        public float GetDistanceFromCity(Address destinationAddress)
+        {
+            var distanceFromCity = 0.0f;
+            var distanceFinder = new DistanceFinder();
+            var url = string.Empty;
+
+            try
+            {
+                url = distanceFinder.GetUrl(startingAddress, destinationAddress);
+            }
+            catch (ArgumentNullException)
+            {
+                // part of the address was not supplied
+                distanceFromCity = 0.0f;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            if (!string.IsNullOrEmpty(url))
+            {
+                var response = distanceFinder.GetWebResponse(url);
+                distanceFromCity = distanceFinder.GetDistance(response);
+            }
+            
+            return distanceFromCity;
+        }
+
+        public int GetPricePerSquareMetre()
+        {
+            var pricePerSquareMetre = 0;
+
+            if (Price != 0 && LandSize != 0)
+            {
+                pricePerSquareMetre = Price / LandSize;
+            }
+
+            return pricePerSquareMetre;
         }
 
         public void SetUrl(string url)
@@ -143,7 +198,7 @@ namespace Property_Finder_App
 
             return landSize;
         }
-        
+
         public int GetCarportSpaces()
         {
             //<li>Carport Spaces:<span>1</span></li>

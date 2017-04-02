@@ -18,7 +18,7 @@ namespace PropertyFinderTests
             testSearch = new Search();
 
             // Open the file to read from.
-            testSearchResponse = File.ReadAllText(@"C:\Users\Dj Music\Documents\Visual Studio 2015\Projects\Property Finder App\PropertyFinderTests\Supplied files\TestSearchResponse.html");
+            testSearchResponse = File.ReadAllText(@"C:\Users\Dj Music\Documents\Visual Studio 2015\Projects\Property Finder App\Supplied files\TestSearchResponse.html");
         }
 
         [TestMethod]
