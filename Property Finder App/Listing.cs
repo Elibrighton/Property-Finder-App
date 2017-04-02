@@ -24,7 +24,7 @@ namespace Property_Finder_App
             search = new Search();
             search.SetUrl(url);
             response = search.GetWebResponse();
-            listingPage = new ListingPage(response);
+            listingPage = new ListingPage(response, url);
             listingPage.SetProperties();
             TotalResults = listingPage.TotalResults;
             TotalListings = listingPage.TotalListings;
@@ -58,8 +58,8 @@ namespace Property_Finder_App
                 search = new Search();
                 search.SetUrl(listingPageUrl);
                 response = search.GetWebResponse();
-                listingPage = new ListingPage(response);
-                listingPage.SetProperties();
+                listingPage = new ListingPage(response, listingPageUrl);
+                listingPage.SetProperties();// add to constructor
                 listingPages.Add(listingPage);
             }
 

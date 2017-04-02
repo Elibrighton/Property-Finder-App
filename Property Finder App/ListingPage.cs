@@ -20,11 +20,12 @@ namespace Property_Finder_App
         
         private readonly string response;
 
-        public ListingPage(string response)
+        public ListingPage(string response, string url)
         {
             if (string.IsNullOrEmpty(response)) throw new ArgumentNullException("Listing Page Response is null");
 
             this.response = response;
+            Url = url;
             Properties = new List<Property>();
             TotalResults = GetTotalResults();
             TotalListings = GetTotalListings(TotalResults);
@@ -69,7 +70,7 @@ namespace Property_Finder_App
             //<a href="/property-house-qld-upper+mount+gravatt-125119870" >
 
             var propertyUrls = new List<string>();
-            var propertyPaths = RegexHelper.GetMatchesList(response, @"/property-house-qld-\D*-\d*").Distinct().ToList();
+            var propertyPaths = RegexHelper.GetMatchesList(response, "/property-house-qld-\\D*\\d*\"\\s?>").Distinct().ToList();
 
             for (int i = 0; i < propertyPaths.Count; i++)
             {
@@ -83,7 +84,7 @@ namespace Property_Finder_App
         {
             if (string.IsNullOrEmpty(path)) throw new ArgumentNullException("Property path is null");
 
-            return string.Concat(realEstateDomain, path.Replace("/", ""));
+            return string.Concat(realEstateDomain, path.Replace("/", "").Replace("\" >", "").Replace("\">", ""));
         }
 
         public void SetProperties()

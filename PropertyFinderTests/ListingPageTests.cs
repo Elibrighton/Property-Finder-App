@@ -16,7 +16,7 @@ namespace PropertyFinderTests
         public void Initialize()
         {
             testSearchResponse = File.ReadAllText(@"C:\Users\Dj Music\Documents\Visual Studio 2015\Projects\Property Finder App\PropertyFinderTests\Supplied files\TestSearchResponse.html");
-            testListingPage = new ListingPage(testSearchResponse);
+            testListingPage = new ListingPage(testSearchResponse, string.Empty);
         }
 
         [TestMethod]
@@ -26,7 +26,7 @@ namespace PropertyFinderTests
             // Arrange
 
             // Act
-            var testListingPage = new ListingPage(string.Empty);
+            var testListingPage = new ListingPage(string.Empty, string.Empty);
 
             // Assert
         }
