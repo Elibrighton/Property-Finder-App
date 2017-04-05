@@ -10,6 +10,7 @@ namespace Property_Finder_App
     {
         public List<string> ListingPageUrls { get; set; }
         public List<ListingPage> ListingPages { get; set; }
+        public List<Property> Properties { get; set; }
         public int TotalResults { get; set; }
         public int TotalListings { get; set; }
 
@@ -30,6 +31,22 @@ namespace Property_Finder_App
             TotalListings = listingPage.TotalListings;
             ListingPageUrls = GetListingPageUrls(TotalListings);
             ListingPages = GetListingPages(ListingPageUrls);
+            Properties = GetProperties(ListingPages);
+        }
+
+        private List<Property> GetProperties(List<ListingPage> listingPages)
+        {
+            var properties = new List<Property>();
+
+            foreach (var listingPage in listingPages)
+            {
+                foreach (var property in listingPage.Properties)
+                {
+                    properties.Add(property);
+                }
+            }
+
+            return properties;
         }
 
         public List<string> GetListingPageUrls(int totalListings)

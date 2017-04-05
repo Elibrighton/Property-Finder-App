@@ -176,7 +176,7 @@ namespace Property_Finder_App
             return new Dictionary<Price, string>()
             {
                 { Price.MinAny, "0" },
-                { Price.MaxAny, "any" },
+                { Price.MaxAny, "Any" },
                 { Price.FiftyThousand, "50000" },
                 { Price.OneHundredThousand, "100000" },
                 { Price.OneHundredAndFiftyThousand, "150000" },

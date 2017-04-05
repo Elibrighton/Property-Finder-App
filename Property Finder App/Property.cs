@@ -20,6 +20,9 @@ namespace Property_Finder_App
         public int CarSpaces { get; set; }
         public int PricePerSquareMetre { get; set; }
         public float DistanceFromCity { get; set; }
+        //public float DistanceToHospital { get; set; }
+        //public float DistanceToTrainStation { get; set; }
+        //public float DistanceToShoppingCentre { get; set; }
 
         private const string realEstateDomain = "http://www.realestate.com.au/";
 
